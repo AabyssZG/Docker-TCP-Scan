@@ -17,7 +17,7 @@ docker -H tcp://$HOST:2375 ps
 
 **这就造成了非常严重的漏洞！能够直接通过 `Docker Remote API` 对相关运行的容器下发恶意命令！**
 
-**特别感谢[国际国际云安全联盟（CSA）渗透测试工作组](https://www.c-csa.cn)的各位老师给我的建议：**
+**特别感谢[国际云安全联盟（CSA）渗透测试工作组](https://www.c-csa.cn)的各位老师给我的建议：**
 
 <img src="https://www.c-csa.cn/u_file/photo/20200609/053979bc45.png" width="400">
 
