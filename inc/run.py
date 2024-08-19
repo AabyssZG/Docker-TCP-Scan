@@ -48,7 +48,7 @@ def create_exec(urllist, container_id, command):
             cprint("\n[+] 成功创建执行ID: " + exec_id, "red")
             return exec_id
         else:
-            cprint("\n[-] 创建执行ID失败，状态码:" + response.status_code, "magenta")
+            cprint("\n[-] 创建执行ID失败，状态码:" + str(response.status_code), "magenta")
             return None
     except RequestException as e:
         print(f"连接出现异常: {e}")
@@ -68,7 +68,7 @@ def start_exec(urllist, exec_id):
                 if line:
                     print(line.decode('utf-8'))
         else:
-            cprint("\n[-] 执行命令失败，状态码: " + response.status_code, "magenta")
+            cprint("\n[-] 执行命令失败，状态码: " + str(response.status_code), "magenta")
     except RequestException as e:
         print(f"连接出现异常: {e}")
 
