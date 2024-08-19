@@ -29,8 +29,6 @@ def Docker_Scan_Proxy(args):
             if res.status_code == 200:
                 print("GET www.baidu.com 状态码为:" + str(res.status_code))
                 cprint(f"[+] 代理可用，马上执行！", "cyan")
-                if args.urlfile:
-                    proxies = f'http://{args.proxy}'
                 Docker_Scan_Header(args, proxies)
         except KeyboardInterrupt:
             print("Ctrl + C 手动终止了进程")
