@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
-################
-#   AabyssZG   #
+   ################
+  #   AabyssZG   #
 ################
 import itertools
 from inc import output, console
@@ -34,7 +34,6 @@ def JSON_handle(header1, header2):
     result_json = json.dumps(merged_dict, indent=2)
     return result_json
 
-
 def create_exec(urllist, container_id, command, proxies):
     try:
         url = urllist + f"containers/{container_id}/exec"
@@ -55,7 +54,6 @@ def create_exec(urllist, container_id, command, proxies):
         print(f"连接出现异常: {e}")
         return None
 
-
 def start_exec(urllist, exec_id, proxies):
     try:
         url = urllist + f"exec/{exec_id}/start"
@@ -74,15 +72,13 @@ def start_exec(urllist, exec_id, proxies):
     except RequestException as e:
         print(f"连接出现异常: {e}")
 
-
 def url(urllist, proxies, header_new):
     cprint(f"======开始尝试读取敏感端点的Docker容器内容======", "cyan")
     header = {"User-Agent": random.choice(ua)}
     newheader = json.loads(str(JSON_handle(header, header_new)).replace("'", "\""))
     urlnew = urllist + "containers/json"
     try:
-        response = requests.get(url=urlnew, headers=newheader, timeout=outtime, allow_redirects=False, verify=False,
-                                proxies=proxies)
+        response = requests.get(url=urlnew, headers=newheader, timeout = outtime, allow_redirects=False, verify=False, proxies=proxies)
         if (response.status_code == 200) and ("Id" in response.text):
             containers = response.json()
             if containers:
@@ -116,7 +112,6 @@ def url(urllist, proxies, header_new):
         cprint("[-] URL为 " + urllist + " 的目标积极拒绝请求，予以跳过！", "magenta")
     sys.exit()
 
-
 def file(filename, proxies, header_new):
     f1 = open("output.txt", "wb+")
     f1.close()
@@ -137,15 +132,14 @@ def file(filename, proxies, header_new):
             newheader = json.loads(str(JSON_handle(header, header_new)).replace("'", "\""))
             try:
                 requests.packages.urllib3.disable_warnings()
-                r = requests.get(url=u, headers=newheader, timeout=outtime, allow_redirects=False, verify=False,
-                                 proxies=proxies)
+                r = requests.get(url=u, headers=newheader, timeout = outtime, allow_redirects=False, verify=False, proxies=proxies)
                 sleep(int(float(sleeps)))
                 if ((r.status_code == 200) and ('Id' in r.text) and ('Image' in r.text)):
                     cprint("[+] 发现Docker端点泄露，URL: " + u + ' ' + "页面长度为:" + str(len(r.content)), "red")
                     f2 = open("output.txt", "a")
                     f2.write(u + '\n')
                     f2.close()
-                elif (r.status_code == 200):
+                elif(r.status_code == 200):
                     cprint("[+] 状态码%d" % r.status_code + ' ' + "但无法获取信息 URL为:" + u, "magenta")
                 else:
                     cprint("[-] 状态码%d" % r.status_code + ' ' + "无法访问URL为:" + u, "yellow")
@@ -162,7 +156,6 @@ def file(filename, proxies, header_new):
         print('\n')
         cprint("[+][+][+] 发现目标TXT内存在Docker敏感端点泄露，已经导出至 output.txt ，共%d行记录" % count, "red")
     sys.exit()
-
 
 def dump(urllist, proxies, header_new):
     cprint(f"======开始尝试读取敏感端点的Docker容器内容======", "cyan")
