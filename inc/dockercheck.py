@@ -24,8 +24,8 @@ def Docker_Check(url,proxies,header_new):
             cprint("[+] 站点指纹符合Docker特征，版本号为" + ver,"red")
             check_status = 1
         while check_status == 0:
-            cprint("[-] 站点指纹不符合Docker特征，不是Docker框架","yellow")
-            sys.exit()
+            cprint("[-] 站点指纹不符合Docker特征，可能不是Docker框架","yellow")
+            break
     except KeyboardInterrupt:
         print("Ctrl + C 手动终止了进程")
         sys.exit()
