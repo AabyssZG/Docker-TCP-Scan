@@ -112,9 +112,9 @@ def HunterDowload(key,proxies):
     except Exception as e:
         print("请不要输入无意义的字符串")
         sys.exit()
-    search = input("[.] 请输入要测绘的语句（默认ip.port=\"2375\"&&header.status_code=\"200\",但需要企业会员）: ")
+    search = input("[.] 请输入要测绘的语句（默认header=\"Server: Docker\"&&header=\"Api-Version\"）: ")
     if search == "":
-        searchs = str("aXAucG9ydD0iMjM3NSImJmhlYWRlci5zdGF0dXNfY29kZT0iMjAwIg==")
+        searchs = str("aGVhZGVyPSJTZXJ2ZXI6IERvY2tlciImJmhlYWRlcj0iQXBpLVZlcnNpb24i")
     else:
         search = base64.urlsafe_b64encode(search.encode("utf-8"))
         searchs = str(search.decode('utf-8'))
