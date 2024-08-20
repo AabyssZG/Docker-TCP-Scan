@@ -137,7 +137,7 @@ def file(filename, proxies, header_new):
                 if ((r.status_code == 200) and ('Id' in r.text) and ('Image' in r.text)):
                     cprint("[+] 发现Docker端点泄露，URL: " + u + ' ' + "页面长度为:" + str(len(r.content)), "red")
                     f2 = open("output.txt", "a")
-                    f2.write(u + '\n')
+                    f2.write(url + '\n')
                     f2.close()
                 elif(r.status_code == 200):
                     cprint("[+] 状态码%d" % r.status_code + ' ' + "但无法获取信息 URL为:" + u, "magenta")
