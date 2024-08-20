@@ -1,0 +1,16 @@
+version
+info
+containers/json
+images/json
+networks
+volumes
+plugins
+system/df
+events
+logging/drivers
+swarm
+services
+tasks
+nodes
+configs
+secrets
