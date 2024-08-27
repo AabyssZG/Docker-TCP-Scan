@@ -76,7 +76,7 @@ def url(urllist, proxies, header_new):
     cprint(f"======开始尝试读取敏感端点的Docker容器内容======", "cyan")
     header = {"User-Agent": random.choice(ua)}
     newheader = json.loads(str(JSON_handle(header, header_new)).replace("'", "\""))
-    urlnew = urllist + "containers/json"
+    urlnew = urllist + "containers/json?all=true"
     try:
         response = requests.get(url=urlnew, headers=newheader, timeout = outtime, allow_redirects=False, verify=False, proxies=proxies)
         if (response.status_code == 200) and ("Id" in response.text):
@@ -125,9 +125,9 @@ def file(filename, proxies, header_new):
             if ('://' not in url):
                 url = str("http://") + str(url)
             if str(url[-1]) != "/":
-                u = url + "/containers/json"
+                u = url + "/containers/json?all=true"
             else:
-                u = url + "containers/json"
+                u = url + "containers/json?all=true"
             header = {"User-Agent": random.choice(ua)}
             newheader = json.loads(str(JSON_handle(header, header_new)).replace("'", "\""))
             try:
