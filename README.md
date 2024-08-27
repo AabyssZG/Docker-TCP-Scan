@@ -24,6 +24,9 @@ docker -H tcp://$HOST:2375 ps
 **本工具旨在以攻促防，是一款针对Docker TCP socket的开源利用工具**
 
 ## 🚨 二、安装Python依赖库
+
+注：其他工具基本都使用 `import docker`，而本工具并没有 `import docker`，意味着并不需要在本地渗透环境中安装 `Docker` 从而更加轻量化
+
 ```
 pip install -r requirements.txt
 ```
