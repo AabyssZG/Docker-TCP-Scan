@@ -144,9 +144,9 @@ def file(filename, proxies, header_new):
             if ('://' not in url):
                 url = str("http://") + str(url)
             if str(url[-1]) != "/":
-                u = url + "/containers/json"
+                u = url + "/containers/json?all=true"
             else:
-                u = url + "containers/json"
+                u = url + "containers/json?all=true"
             header = {"User-Agent": random.choice(ua)}
             newheader = json.loads(str(JSON_handle(header, header_new)).replace("'", "\""))
             try:
