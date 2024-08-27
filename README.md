@@ -163,16 +163,4 @@ python3 Docker-TCP-Scan.py -d example.com
 
 ## 🙏 六、感谢各位师傅
 
-## Stargazers
-
-[![Stargazers repo roster for @AabyssZG/Docker-TCP-Scan](http://reporoster.com/stars/AabyssZG/Docker-TCP-Scan)](https://github.com/AabyssZG/Docker-TCP-Scan/stargazers)
-
-
-## Forkers
-
-[![Forkers repo roster for @AabyssZG/Docker-TCP-Scan](http://reporoster.com/forks/AabyssZG/Docker-TCP-Scan)](https://github.com/AabyssZG/Docker-TCP-Scan/network/members)
-
-
-## Star History
-
 [![Star History Chart](https://api.star-history.com/svg?repos=AabyssZG/Docker-TCP-Scan&type=Date)](https://star-history.com/#AabyssZG/Docker-TCP-Scan&Date)
